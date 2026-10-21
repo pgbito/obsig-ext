@@ -1,60 +1,58 @@
 # obsig
 
-extensión para navegadores chromium (chrome, brave, edge) hecha por pgbito, para ver quién te sigue y quién no en instagram directamente en el navegador.  
-interfaz minimalista, oscura, con fuente custom, tarjetas limpias y checklist para gestionar mutuals y rogados (no mutuals).
+extensión para navegadores chromium (google chrome, brave, microsoft edge, opera) hecha por **pgbito** para ver quién te sigue y quién no te sigue de vuelta en instagram, directamente desde tu navegador y sin pedirte contraseñas.
 
 ---
 
-**⚠️ seguridad y transparencia ante todo**
+## ⚠️ seguridad y privacidad (100% transparente)
 
-esta extensión **no guarda, no almacena ni comparte tus credenciales de instagram con ningún servidor externo**.  
-todo corre 100% local en tu propio navegador. la extensión se comunica directamente con los endpoints oficiales de instagram usando las cookies de tu sesión activa (`sessionid`, `ds_user_id`, `csrftoken`), por lo que **no tenés que copiar ni pegar cookies a mano**.
+- **no te pide contraseña ni guarda tus datos:** la extensión funciona con tu sesión activa de instagram en el navegador.
+- **cero servidores externos:** todo corre de forma local en tu computadora. no se envía información a ninguna base de datos ni a terceros.
+- **no ocupás instalar python ni saber programar.**
 
-> ⚠️ **importante sobre las sesiones y rate limits:**
->
-> - instagram puede **limitar temporalmente las solicitudes (error 429)** si la cuenta tiene **demasiados seguidores o seguidos** o si hacés muchas consultas seguidas en poco tiempo.
-> - la extensión incluye un **limitador de velocidad (throttling)** entre páginas y pausas automáticas de 3.5 segundos al dejar de seguir usuarios para evitar bloqueos temporales de acción.
-> - la sesión expira naturalmente si cerrás sesión en instagram.com o después de unos días.
-> - tus credenciales nunca salen de tu máquina ni tocan bases de datos de terceros.
+> 💡 **nota sobre instagram:** instagram tiene límites para evitar spam. si tenés miles de seguidores o hacés muchas consultas seguidas, instagram puede poner pausas temporales (error 429). la extensión ya incluye tiempos de espera automáticos para proteger tu cuenta.
 
 ---
 
-## features
+## 📥 cómo descargar e instalar (paso a paso para principiantes)
 
-- **cero configuración manual de cookies:** detecta automáticamente si estás logueado en instagram.com. ya no ocupás CookieEditor ni andar copiando `sessionid`.
-- **un clic para tu perfil:** botón rápido `yo` para cargar tu usuario activo automáticamente, o podés escribir el @ de cualquier cuenta para inspeccionarla.
-- **separación limpia:**
-  - `rogados`: cuentas que vos seguís pero que no te siguen de vuelta.
-  - `mutuals`: cuentas que se siguen mutuamente.
-- **unfollow masivo seguro:** checklist para marcar usuarios de la lista de rogados y dejarlos de seguir con confirmación previa y pausas de seguridad entre peticiones.
-- **consola de logs en vivo:** pestaña dedicada para ver cada petición, código de respuesta HTTP, número de página y reintentos en tiempo real.
-- **avatares instantáneos sin broncas de CORS:** carga y optimización rápida de fotos de perfil mediante proxy en Cloudflare con fallback automático a avatar con la inicial del usuario.
-- **exportar y copiar:** botones para copiar la lista de usernames al portapapeles o descargarla en formato `.json`.
-- **filtro en vivo:** buscador instantáneo dentro de cada pestaña para encontrar usuarios específicos por @ o nombre completo.
+No ocupás saber nada de git ni de código. Solo seguí estos 3 pasos:
 
----
+### paso 1: descargar los archivos a tu compu
+1. En esta misma página de GitHub, arriba a la derecha, hacé clic en el botón verde que dice **`<> Code`** (o **Código**).
+2. En el menú que se despliega, hacé clic en **`Download ZIP`** (Descargar ZIP).
+3. Buscá el archivo descargado (`obsig-ext-main.zip`) en tu carpeta de *Descargas* y **descomprimilo** (clic derecho -> *Extraer todo* / *Extract all*).  
+   *(¡Ojo! Tenés que descomprimirlo; no podés cargar el archivo .zip directamente).*
 
-## instalación (chrome / brave / edge)
+### paso 2: activar el modo desarrollador en tu navegador
+1. Abrí tu navegador (Chrome, Brave, Edge) y pegá este enlace en la barra de direcciones:
+   - **En Google Chrome o Brave:** `chrome://extensions/`
+   - **En Microsoft Edge:** `edge://extensions/`
+2. En la esquina superior derecha de la pantalla, prendé el interruptor que dice **Modo de desarrollador** (*Developer mode*).
 
-no ocupa compilar nada, solo cargar la carpeta de la extensión en modo desarrollador:
-
-1. abrí tu navegador y andá a la página de extensiones:
-   - **chrome / brave:** `chrome://extensions/`
-   - **edge:** `edge://extensions/`
-2. activá el interruptor de **Modo de desarrollador** (Developer mode) en la esquina superior derecha.
-3. hacé clic en el botón **Cargar descomprimida** (Load unpacked).
-4. seleccioná esta carpeta (`ext`).
-5. fijá el icono de **obsig** en la barra de extensiones de tu navegador para tenerlo a mano.
+### paso 3: cargar la extensión
+1. Hacé clic en el botón que dice **Cargar descomprimida** (*Load unpacked*) en la esquina superior izquierda.
+2. Se abrirá una ventana para elegir carpeta: buscá y seleccioná la carpeta que descomprimiste (**`obsig-ext-main`**, la que contiene el archivo `manifest.json`).
+3. ¡Listo! Ya te va a aparecer **obsig** en tu lista de extensiones.
+4. **Recomendación:** Hacé clic en el icono de la pieza de rompecabezas (Extensiones) en la barra superior de tu navegador y dale al botón de fijar (pin 📌) para tener el icono de **obsig** siempre visible.
 
 ---
 
-## cómo usarla
+## 🚀 cómo se usa
 
-1. abrí [instagram.com](https://www.instagram.com) en tu navegador y asegurate de tener la sesión iniciada.
-2. abrí el popup de **obsig** haciendo clic en el icono de la extensión.
-3. el indicador en la esquina superior derecha te mostrará si la sesión está conectada (`conectado (@usuario)`).
-4. dejá el campo vacío o dale al botón `yo` para analizar tu propia cuenta (o poné el @ de otra cuenta).
-5. dale a **analizar**:
-   - podés ver el progreso en tiempo real en la pestaña **consola**.
-   - al terminar, te pasa directo a la pestaña de **rogados** con el resumen y los conteos.
-6. marcá las cuentas que querás y usá los botones para copiar, exportar a json o dejar de seguir.
+1. Abrí una pestaña normal en [instagram.com](https://www.instagram.com) y asegurate de tener tu cuenta abierta.
+2. Hacé clic en el icono de **obsig** en la barra de tu navegador.
+3. Arriba a la derecha verás una luz verde indicando **`conectado`** con tu sesión.
+4. Hacé clic en el botón **`ver mi propia cuenta`** (o escribí el `@usuario` de cualquier perfil público que querás revisar).
+5. Dale al botón azul **`analizar`**:
+   - Podés ir a la pestaña **`consola`** para ver el progreso de descarga de seguidores en vivo.
+   - Cuando termine, verás el resumen y la lista de **`rogados`** (cuentas que vos seguís pero que ellos no te siguen a vos) y **`mutuals`** (cuentas que se siguen mutuamente).
+6. Podés usar el buscador para filtrar nombres o usuarios, o los botones de **`copiar`** y **`exportar json`** para guardar la lista en tu compu.
+
+---
+
+## 🔄 cómo actualizar la extensión si sale una versión nueva
+
+1. Descargás el nuevo ZIP desde este repo y reemplazás los archivos en tu carpeta.
+2. Vas de nuevo a `chrome://extensions/`.
+3. Buscás **obsig** y le hacés clic al icono de la flechita circular (**Recargar**).
